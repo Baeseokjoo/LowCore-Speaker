@@ -1,0 +1,48 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><title>LOWCORE — cover</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&amp;family=Space+Grotesk:wght@600&amp;display=swap">
+<style>
+  html, body { margin: 0; background: var(--bg); }
+  .cover { position: relative; width: 960px; height: 288px; overflow: hidden; background: var(--bg); }
+  .cover svg { position: absolute; inset: 0; }
+  .indigo { fill: var(--smoke-indigo); }
+  .plum { fill: var(--smoke-plum); }
+  .orchid { fill: var(--orchid); }
+  .blue { fill: var(--smoke-blue); }
+  .r { rx: var(--radius-lg); ry: var(--radius-lg); }
+  .ring { fill: none; stroke: var(--orchid); stroke-width: 2; }
+  .ring-soft { fill: none; stroke: var(--orchid); stroke-width: 2; opacity: 0.5; }
+  .cap { fill: var(--fg); }
+  .text { position: absolute; left: 48px; bottom: 40px; max-width: 420px; }
+  .name { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 88px; line-height: 0.92; letter-spacing: 0.04em; color: var(--fg); }
+  .tag { margin: 16px 0 0; font-family: var(--font-sans); font-size: 14px; line-height: 1.5; color: var(--fg-muted); }
+</style>
+</head>
+<body>
+<div class="cover">
+  <!--
+    blocks: smoke-indigo 200×308 slab, smoke-plum 160×176, orchid 160×136, smoke-blue 120×260; corners radius-lg (20)
+    arrangement: one tall slab with two stacked satellites and a band bleeding off the top-right, all right of x = 480
+    pattern: concentric rings = a woofer cone seen from the front / sound spreading — the brand is a speaker and its hero smoke spreads as a ring from the centre
+    scales: gaps space-2 (16); ring pitch space-3 (24); radii radius-lg (20)
+  -->
+  <svg width="960" height="288" viewBox="0 0 960 288" aria-hidden="true">
+    <rect class="indigo r" x="480" y="-20" width="200" height="328"></rect>
+    <circle class="ring" cx="580" cy="144" r="24"></circle>
+    <circle class="ring" cx="580" cy="144" r="48"></circle>
+    <circle class="ring" cx="580" cy="144" r="72"></circle>
+    <circle class="ring-soft" cx="580" cy="144" r="96"></circle>
+    <circle class="cap" cx="580" cy="144" r="6"></circle>
+    <rect class="plum r" x="696" y="-20" width="160" height="176"></rect>
+    <rect class="orchid r" x="696" y="172" width="160" height="136"></rect>
+    <rect class="blue r" x="872" y="-20" width="120" height="240"></rect>
+  </svg>
+  <div class="text">
+    <p class="name">LOWCORE</p>
+    <p class="tag">들리지 않던 저음까지, 작업의 기준이 되는 스피커.</p>
+  </div>
+</div>
+</body>
+</html>

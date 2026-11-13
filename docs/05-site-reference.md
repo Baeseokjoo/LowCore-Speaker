@@ -4,7 +4,7 @@
 - 분석 대상: Figma Referanse 페이지의 두 섹션
   - 기능상 레퍼런스: https://www.figma.com/design/PCKvGX1rVF93q6g0Yz2cdP/LowCore?node-id=24-3
   - 컬러 레퍼런스: https://www.figma.com/design/PCKvGX1rVF93q6g0Yz2cdP/LowCore?node-id=46-186
-- 이 문서는 화면이나 코드를 만들기 전 단계의 분석입니다. 정확한 색상 · 글꼴 · 간격 · 움직임 수치는 확정하지 않습니다.
+- 이 문서는 화면이나 코드를 만들기 전 단계의 분석입니다. 정확한 색상 · 글꼴 · 간격 · 움직임 수치는 확정하지 않습니다. (이후 색상은 2026-11-13 R5 기준으로 확정, 06-site-design.md 참고)
 
 ## 0. 분석 범위와 한계
 
@@ -23,7 +23,7 @@
 | R2 | Modern Focus Cards with Blur & Hover Zoom Effect | https://allitoappmarket.blogspot.com/2025/11/modern-focus-cards-with-blur-hover-zoom.html | 비교 체험: 기본은 세 카드가 일정하게 나열, 선택하면 확대되고 나머지는 블러, 재생 버튼·플레이바는 기본 숨김 후 선택 시 등장 |
 | R3 | 3D Card Hover Tilt Effect (Aceternity UI) | https://ui.aceternity.com/components/3d-card-effect | 카드에 호버가 되었을 때 틸트 효과를 부여하고, 클릭되었을 때 상세 펼침 상태가 되도록 설정 (R3 · R4 연결, 사용자 설명 기준) |
 | R4 | Expandable Image Cards (Framer 컴포넌트) | https://audienceexpandcards.framer.website/ | 카드에 호버가 되었을 때 틸트 효과를 부여하고, 클릭되었을 때 상세 펼침 상태가 되도록 설정 (R3 · R4 연결, 사용자 설명 기준) |
-| R5 | LOWCORE 컬러 조합 B안 (미확정) | https://www.figma.com/design/PCKvGX1rVF93q6g0Yz2cdP/LowCore?node-id=46-186 | 확정 전까지 md 문서에는 반영하지 않음 |
+| R5 | LOWCORE 컬러 조합 B안 (확정) | https://www.figma.com/design/PCKvGX1rVF93q6g0Yz2cdP/LowCore?node-id=46-186 | 2026-11-13 확정. 최종 토큰과 사용처는 06-site-design.md 2번, PROJECT_CONTEXT.md 4번에 반영 |
 
 ---
 
@@ -183,7 +183,14 @@
 
 ---
 
-### R5. LOWCORE 컬러 조합 B안 (미확정)
+### R5. LOWCORE 컬러 조합 B안 (확정)
+
+> 2026-11-13 확정. 아래는 확정 전 분석이며, 디자인 단계에서 다음이 달라졌습니다. 최종 값은 06-site-design.md 2번을 따릅니다.
+> - 추가: S04 펼침 프레임 바탕 `surface-2` #1A1723, 보조 버튼·펼친 이미지 프레임 테두리 `outline` #736D82, 호버 `orchid-hover` #D0A4F5
+> - 보조 버튼: 흰색 알약형 대신 투명 바탕 + `outline` 테두리 알약형 (흰색 채움이 오키드와 경쟁해서)
+> - S04 선택 카드 테두리: 오키드 대신 `outline` (S04에서 오키드는 B05 구매 버튼에만)
+> - 포인트 사용처 추가: 상단 메뉴 현재 위치(오키드 16% 바탕 + 오키드 글자), 키보드 포커스 링
+> - 연기 빛 사용처 추가: 틸트 시 카드 뒤로 비치는 빛(플럼 · 마젠타)
 
 **1. 직접 확인할 수 있는 특징**
 - 제목과 본문의 크기 관계: 색상표 자료라 해당하지 않습니다.
@@ -211,7 +218,6 @@
 - 이유 3: 대비 수치가 확인된 값이라, 글자 가독성을 지키면서 어두운 화면을 만들 수 있습니다.
 
 **4. 목적과 맞지 않아 그대로 적용하지 않을 부분**
-- 아직 확정이 아니므로 PROJECT_CONTEXT 등 다른 문서의 컬러 항목에는 반영하지 않습니다.
 - 연기 빛을 글자 · 아이콘 색으로 쓰는 것: 대비가 부족합니다.
 - 블러 처리된 카드에 포인트 컬러를 쓰는 것: 선택 대비가 흐려집니다.
 
@@ -227,7 +233,7 @@
 | R2 Focus Cards | 선택 시 초점 · 블러 원리 | S02 비교 체험 (S04와 원리 통일) |
 | R3 3D Card Tilt | 클릭 전 호버의 틸트 · 입체감 | S04 모델 카드 호버 (데스크톱) |
 | R4 Expandable Cards | 클릭 후 단계적 공개, 한 곳에만 강한 색 | S04 모델 선택 · 상세 펼침 |
-| R5 컬러 B안 | 사이트 전체 색 기준 | 전체 (미확정) |
+| R5 컬러 B안 | 사이트 전체 색 기준 | 전체 (확정) |
 
 ### 3-2. 레퍼런스끼리 충돌하는 특징과 우선순위
 
@@ -260,6 +266,6 @@
 
 ### 3-4. 아직 확정하지 않은 것
 
-- 정확한 색상값(R5는 미확정), 글꼴, 간격, 움직임 속도와 강도
+- 글꼴, 간격, 움직임 속도와 강도 (색상값은 R5 기준으로 확정, 06-site-design.md 2번)
 - 블러의 정도, 확대 비율, 틸트 각도, 연기의 움직임 속도
 - 위 [변경 제안 1~4]의 반영 여부

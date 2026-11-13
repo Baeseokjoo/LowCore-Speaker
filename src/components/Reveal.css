@@ -1,0 +1,12 @@
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.reveal.is-shown {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 300ms ease var(--reveal-delay, 0s),
+    transform 300ms var(--ease) var(--reveal-delay, 0s);
+}

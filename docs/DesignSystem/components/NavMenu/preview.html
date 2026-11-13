@@ -1,0 +1,18 @@
+<!-- @dsCard group="Navigation" height=90 -->
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><title>NavMenu — preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0;background:var(--bg)}</style>
+</head>
+<body>
+<div id="root" class="lc-stage" style=""></div>
+<script>
+var L = window.LowCore, h = React.createElement;
+function Demo(){ var s=React.useState('s02'), cur=s[0], set=s[1];
+  var items=[['비교 체험','s02'],['소리가 다른 이유','s03'],['모델','s04']].map(function(x){return {label:x[0],href:'#'+x[1],current:cur===x[1]};});
+  return h(L.NavMenu,{items:items,onNavigate:function(it,e){e.preventDefault();set(it.href.slice(1));}}); }
+ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
+</script>
+</body>
+</html>

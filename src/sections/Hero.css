@@ -1,0 +1,147 @@
+.hero {
+  position: relative;
+  height: var(--hero-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+}
+
+/* 글자 뒤 가운데는 bg로 어둡게 남김 */
+.hero__shade {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 780px;
+  height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(7, 6, 11, 0.92) 0%,
+    rgba(7, 6, 11, 0.7) 45%,
+    rgba(7, 6, 11, 0) 75%
+  );
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.hero__brand {
+  height: 32px;
+  width: auto;
+  margin: 0 0 28px;
+}
+
+/* 전기 효과 로고: 빛·아크가 잘리지 않도록 넉넉한 400×160px 칸을 주고 scale 0.53으로
+   로고를 약 212×54px로 맞춤. 칸 위아래 약 53px 여유는 음수 여백으로 상쇄해
+   로고 아래와 메인카피 사이 28px 유지. 커서 반응(Interactive)을 위해 칸이 마우스를 받음 */
+.hero__brand-electric {
+  position: relative;
+  z-index: 1;
+  width: 400px;
+  height: 160px;
+  margin: -53px 0 -25px;
+}
+
+.hero__title {
+  margin: 0;
+  font-size: 60px;
+  line-height: 1.22;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--fg);
+}
+
+.hero__sub {
+  margin: 28px 0 0;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--fg-muted);
+}
+
+/* 문구가 다 펼쳐진 뒤(.is-shown) 서서히 나타남. 그 전에는 보이지도 눌리지도 않음 */
+.hero__cta-wrap {
+  margin-top: 44px;
+  opacity: 0;
+  transform: translateY(8px);
+  visibility: hidden;
+  transition:
+    opacity 700ms ease,
+    transform 700ms var(--ease),
+    visibility 0s linear 700ms;
+}
+
+.hero__cta-wrap.is-shown {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  transition:
+    opacity 700ms ease,
+    transform 700ms var(--ease),
+    visibility 0s;
+}
+
+.hero__cta {
+  animation: lc-breathe 4s ease-in-out infinite;
+}
+
+.hero__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow-cta-hover);
+  animation: none;
+}
+
+.hero__cta:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.hero__cta-arrow {
+  transition: transform 200ms ease;
+}
+
+.hero__cta:hover .hero__cta-arrow {
+  transform: translateY(3px);
+}
+
+.hero__cta-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--orchid);
+  pointer-events: none;
+  animation: lc-ring 700ms var(--ease) forwards;
+}
+
+@keyframes lc-breathe {
+  0%,
+  100% {
+    box-shadow: var(--glow-cta-rest);
+  }
+  50% {
+    box-shadow: var(--glow-cta-peak);
+  }
+}
+
+@keyframes lc-ring {
+  from {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  to {
+    transform: scale(1.22, 1.7);
+    opacity: 0;
+  }
+}

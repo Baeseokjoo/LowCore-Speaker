@@ -1,0 +1,41 @@
+.dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: var(--scrim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: lc-fadein 200ms ease both;
+}
+
+.dialog__box {
+  width: 400px;
+  max-width: calc(100% - 32px);
+  padding: 36px;
+  border-radius: var(--radius-lg);
+  background: var(--surface-1);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1-5);
+  color: var(--fg);
+}
+
+.dialog__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.dialog__body {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+
+.dialog__close {
+  margin-top: var(--space-1-5);
+  align-self: flex-end;
+}

@@ -1,0 +1,8 @@
+기본 프롬프트
+[로고 png파일 첨부]
+Photorealistic product photo of a premium studio monitor speaker for music and video production: a solid rectangular cabinet with softly rounded edges, a 5-inch woofer with a dark brushed-metal ring and a small dome tweeter above it, finished in deep charcoal matte with a fine texture. Minimal, heavy and precise design with no visible brand name, text or logo. Straight-on front view at eye level, perfectly centered on a vertical 1600×2000 pixel canvas (4:5 aspect ratio), with the speaker filling about 90% of the canvas height. Crisp silhouette with clearly defined edges. Soft, even studio lighting with a subtle rim light tracing the cabinet outline. Isolated on a fully transparent background, exported as PNG with an alpha channel: no checkerboard pattern, no floor, no cast shadow and no reflection. Weighty, solid, sensual and refined high-end commercial product photography.
+-수정해서 작성한 내용
+ 1. 디자인은 다르게 생성해줘
+ 2. 스피커가 오른쪽을 바라보도록 30도 회전을 해주거 입체적으로 보이게끔 수정해줘. 그리고 윗면이 보이지는 않도록 해줘
+ 3. 바로보는 방향을 반대로 수정해줘
+ 4. 지금 왼쪽 측면이 보이도록 회전이 되어있는데 오른쪽측면이 보이도록 방향을 바꿔줘

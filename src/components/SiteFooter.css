@@ -1,0 +1,16 @@
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: 40px var(--space-page) var(--space-6);
+  border-top: 1px solid var(--line);
+}
+
+.site-footer__copy {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--fg-muted);
+}

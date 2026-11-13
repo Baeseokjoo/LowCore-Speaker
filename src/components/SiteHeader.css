@@ -1,0 +1,36 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  height: var(--header-height);
+  padding: 0 var(--space-page);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(7, 6, 11, 0);
+  border-bottom: 1px solid rgba(38, 35, 47, 0);
+  transition:
+    background 300ms ease,
+    border-color 300ms ease;
+}
+
+.site-header.is-scrolled {
+  background: var(--scrim);
+  -webkit-backdrop-filter: var(--blur-header);
+  backdrop-filter: var(--blur-header);
+  border-bottom-color: var(--line);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.logo:focus-visible {
+  outline: 2px solid var(--orchid);
+  outline-offset: 4px;
+}

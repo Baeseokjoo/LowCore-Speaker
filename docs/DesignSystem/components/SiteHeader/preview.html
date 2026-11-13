@@ -1,0 +1,20 @@
+<!-- @dsCard group="Navigation" height=200 -->
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><title>SiteHeader — preview</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>body{margin:0;background:var(--bg)}</style>
+</head>
+<body>
+<div id="root" class="lc-stage" style="padding:24px 0"></div>
+<script>
+var L = window.LowCore, h = React.createElement;
+var items=[{label:'비교 체험',href:'#s02'},{label:'소리가 다른 이유',href:'#s03',current:true},{label:'모델',href:'#s04'}];
+ReactDOM.createRoot(document.getElementById('root')).render(h('div',{style:{display:'flex',flexDirection:'column',gap:16}},
+  h('p',{className:'lc-heading__eyebrow'},'히어로 위 · 투명'),
+  h(L.SiteHeader,{items:[{label:'비교 체험',href:'#s02'},{label:'소리가 다른 이유',href:'#s03'},{label:'모델',href:'#s04'}]}),
+  h('p',{className:'lc-heading__eyebrow'},'스크롤 후 · scrim + 흐림 + 구분선'),
+  h(L.SiteHeader,{items:items,scrolled:true})));
+</script>
+</body>
+</html>

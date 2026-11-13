@@ -1,0 +1,68 @@
+/* LOWCORE 디자인 토큰 — docs/DesignSystem/tokens.json 기준 */
+:root {
+  /* color */
+  --bg: #07060b;
+  --surface-1: #121019;
+  --surface-2: #1a1723;
+  --surface-image-top: #16131e;
+  --surface-image-bottom: #0d0b12;
+  --line: #26232f;
+  --line-strong: #3a3546;
+  --outline: #736d82;
+  --fg: #edebf2;
+  --fg-muted: #9c98a8;
+  --orchid: #c08af0;
+  --orchid-hover: #d0a4f5;
+  --on-orchid: #07060b;
+  --orchid-tint: rgba(192, 138, 240, 0.16);
+  --hover-tint: rgba(237, 235, 242, 0.08);
+  --track: rgba(237, 235, 242, 0.2);
+  --scrim: rgba(7, 6, 11, 0.72);
+  --smoke-indigo: #1c1a4a;
+  --smoke-plum: #4d2b53;
+  --smoke-magenta: #6e2a6b;
+  --smoke-blue: #17466e;
+  --art-ring: #2a2633;
+  --placeholder: #1f1c28;
+
+  /* type */
+  --font-sans: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --font-display: 'Space Grotesk', 'IBM Plex Sans KR', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* spacing */
+  --space-1: 8px;
+  --space-1-5: 12px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-section: 160px;
+  --space-page: max(24px, calc((100% - var(--content-width)) / 2));
+
+  /* radius */
+  --radius-sm: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* shadow */
+  --shadow-layer: 0 0 40px rgba(0, 0, 0, 0.6);
+  --glow-cta-rest: 0 0 18px 0 rgba(192, 138, 240, 0.18);
+  --glow-cta-peak: 0 0 36px 6px rgba(192, 138, 240, 0.38);
+  --glow-cta-hover: 0 10px 36px rgba(192, 138, 240, 0.5);
+
+  /* layout */
+  --content-width: 1200px;
+  --header-height: 80px;
+  --hero-height: 900px;
+  --tile-ratio: 4 / 5;
+
+  /* effect */
+  --blur-dimmed: blur(4px) brightness(0.75);
+  --blur-pushed: blur(5px) brightness(0.7);
+  --blur-header: blur(16px);
+
+  /* motion */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}

@@ -1,0 +1,132 @@
+.compare {
+  position: relative;
+  padding-top: 140px;
+  padding-bottom: var(--space-section);
+}
+
+.compare__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.compare__head {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* 헤드폰 안내 상자 */
+.notice {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 18px var(--space-3);
+  max-width: 640px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-1);
+  text-align: left;
+}
+
+.notice__icon {
+  flex: none;
+  color: var(--fg);
+}
+
+.notice__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.notice__body {
+  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+
+.compare__guide {
+  margin: 24px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+
+.compare__grid {
+  position: relative;
+  margin-top: var(--space-8);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+/* 비교 이미지 타일 */
+.compare-tile {
+  position: relative;
+  transition:
+    transform 400ms var(--ease),
+    filter 400ms ease;
+}
+
+.compare-tile.is-selected {
+  transform: perspective(900px) scale(1.04);
+}
+
+.compare-tile.is-dimmed {
+  transform: perspective(900px) scale(0.97);
+  filter: var(--blur-dimmed);
+}
+
+.compare-tile__btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: var(--tile-ratio);
+  padding: 0;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--line);
+  background: linear-gradient(180deg, var(--surface-1) 0%, var(--surface-image-bottom) 100%);
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+
+.compare-tile.is-selected .compare-tile__btn {
+  border-color: var(--orchid);
+}
+
+.compare-tile__btn:focus-visible {
+  outline: 2px solid var(--orchid);
+  outline-offset: 4px;
+}
+
+.compare-tile__label {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--fg-muted);
+}
+
+.compare-tile__img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: auto;
+  max-width: 90%;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+}

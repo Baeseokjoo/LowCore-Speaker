@@ -1,0 +1,247 @@
+.models {
+  /* 카드 클릭 시 펼침·밀려남·이미지 커짐 공통: 0.9초, 앞쪽에 덜 몰린 부드러운 곡선 */
+  --s04-open: 900ms;
+  --s04-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  padding-top: var(--space-section);
+  padding-bottom: 180px;
+  border-top: 1px solid var(--line);
+}
+
+.model-img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: auto;
+  max-width: 90%;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* 기본 상태: 카드 2장 */
+.models__cards {
+  margin-top: var(--space-8);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  animation: lc-fade 450ms var(--ease);
+}
+
+.model-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface-1);
+  color: var(--fg);
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    transform 150ms ease-out,
+    box-shadow 200ms ease;
+}
+
+.model-card:focus-visible,
+.detail__media:focus-visible,
+.pushed-card:focus-visible {
+  outline: 2px solid var(--orchid);
+  outline-offset: 4px;
+}
+
+.model-card__media {
+  position: relative;
+  display: block;
+  height: 440px;
+  background: linear-gradient(180deg, var(--surface-image-top) 0%, var(--surface-image-bottom) 100%);
+}
+
+/* 왼쪽 모델명 | 오른쪽 제품 요약 — 사이 간격은 남는 공간만큼 자동 */
+.model-card__text {
+  display: flex;
+  align-items: center; /* 모델명을 요약 세 줄의 세로 가운데에 */
+  justify-content: space-between;
+  gap: var(--space-4); /* 최소 간격 */
+  padding: 28px 32px 32px;
+}
+
+.model-card__name {
+  flex: none;
+  font-size: 24px;
+  line-height: 1.35;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* 제품 요약 — body-lg(18px), fg-muted */
+.model-card__summary {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--orchid); /* 메뉴 현재 위치 글자색과 같음 */
+}
+
+.model-card__summary-line {
+  display: block;
+}
+
+/* 펼침 상태 */
+.models__open {
+  margin-top: var(--space-8);
+  overflow: hidden;
+}
+
+.models__row {
+  display: flex;
+  gap: var(--space-3);
+  height: 600px;
+}
+
+.models__row--five {
+  padding-left: var(--space-page);
+}
+
+.models__row--eight {
+  justify-content: flex-end;
+  padding-right: var(--space-page);
+}
+
+.detail {
+  flex: 0 0 1000px;
+  display: flex;
+  position: relative;
+  border-radius: var(--radius-lg);
+  background: var(--surface-2);
+}
+
+.detail--open-right {
+  animation: lc-open-r var(--s04-open) var(--s04-ease);
+}
+
+.detail--open-left {
+  animation: lc-open-l var(--s04-open) var(--s04-ease);
+}
+
+.detail__media {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 424px;
+  display: block;
+  padding: 0;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--orchid); /* S02 선택 테두리와 같음 */
+  box-shadow: var(--shadow-layer);
+  background: linear-gradient(180deg, var(--surface-image-top) 0%, var(--surface-image-bottom) 100%);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.detail__media--left {
+  margin-right: -24px;
+}
+
+.detail__media--right {
+  margin-left: -24px;
+}
+
+.detail__body {
+  flex: 0 0 600px;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6) var(--space-8);
+  animation: lc-fadein 650ms 360ms both; /* 펼침 시간에 맞춰 같은 비율로 늘림 */
+}
+
+.detail__brand {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: var(--fg-muted);
+}
+
+.detail__name {
+  margin: 8px 0 0;
+  font-size: 32px;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* 상세 정보: 12항목을 6개씩 두 줄(열)로 — 위에서 아래로 채운 뒤 다음 열 */
+.detail__specs {
+  margin: var(--space-3) 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(6, auto);
+  grid-auto-flow: column;
+  column-gap: var(--space-3);
+}
+
+.detail__spec {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 7px 0;
+  border-top: 1px solid var(--line);
+  min-width: 0;
+}
+
+.detail__spec-label {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--fg-muted);
+}
+
+.detail__spec-value {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.detail__actions {
+  margin-top: auto;
+  display: flex;
+  gap: var(--space-1-5);
+}
+
+/* 밀려난 카드 */
+.pushed-card {
+  position: relative;
+  flex: 0 0 440px;
+  padding: 0;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--surface-image-top) 0%, var(--surface-image-bottom) 100%);
+  overflow: hidden;
+  cursor: pointer;
+  filter: var(--blur-pushed);
+}
+
+/* 밀려나는 움직임·이미지 프레임이 커지는 움직임은 modelMorph.js가 출발 위치에서 이어서 그림 */
+
+@keyframes lc-open-r {
+  from {
+    clip-path: inset(0 576px 0 0 round 20px);
+  }
+  to {
+    clip-path: inset(0 0 0 0 round 20px);
+  }
+}
+
+@keyframes lc-open-l {
+  from {
+    clip-path: inset(0 0 0 576px round 20px);
+  }
+  to {
+    clip-path: inset(0 0 0 0 round 20px);
+  }
+}

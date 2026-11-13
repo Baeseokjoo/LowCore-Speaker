@@ -1,0 +1,50 @@
+.play-control {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  animation: lc-fadein 300ms ease both;
+}
+
+.play-control__btn {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--orchid);
+  color: var(--on-orchid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 200ms ease;
+}
+
+.play-control__btn:hover {
+  background: var(--orchid-hover);
+}
+
+.play-control__btn:focus-visible {
+  outline: 2px solid var(--orchid);
+  outline-offset: 4px;
+}
+
+.play-control__track {
+  position: relative;
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--track);
+  overflow: hidden;
+}
+
+.play-control__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--orchid);
+  border-radius: 2px;
+}
