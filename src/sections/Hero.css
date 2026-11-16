@@ -217,3 +217,10 @@
     transform: scale(0.97);
   }
 }
+
+/* 데스크톱 한 화면 맞춤: 세로 700px 이상 데스크톱에서 히어로를 화면 높이에 딱 맞춤 (2026-11-16) */
+@media (min-width: 1024px) and (min-height: 700px) {
+  .hero {
+    height: 100vh;
+  }
+}

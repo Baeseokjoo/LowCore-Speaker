@@ -210,3 +210,25 @@
   filter: blur(1.5px);
   opacity: 0.55;
 }
+
+/* 데스크톱 한 화면 맞춤 (2026-11-16)
+   섹션 = 화면 높이. 헤더(80px) 아래 남은 공간에 문구 + 이미지 3개가 들어가도록
+   타일 묶음 너비를 화면 높이에서 거꾸로 계산 (타일 비율 4:5 → 너비 = 높이 × 0.8).
+   460px = 헤더·위아래 여백·제목·안내 상자·안내 문구·이미지 위 간격의 합. 원래 크기보다 커지지는 않음 */
+@media (min-width: 1024px) and (min-height: 700px) {
+  .compare {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: calc(var(--header-height) + 24px);
+    padding-bottom: 40px;
+  }
+
+  .compare__grid {
+    width: min(100%, calc((100vh - 460px) * 0.8 * 3 + var(--space-4) * 2));
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
