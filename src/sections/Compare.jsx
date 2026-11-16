@@ -5,7 +5,7 @@ import Reveal, { REVEAL_DURATION, CARDS_AFTER_TEXT } from '../components/Reveal'
 import PlayControl from '../components/PlayControl';
 import useCompareAudio from '../hooks/useCompareAudio';
 import useTilt, { tiltGlow } from '../hooks/useTilt';
-import useMediaQuery, { PHONE } from '../hooks/useMediaQuery';
+import useMediaQuery, { COMPACT, PHONE } from '../hooks/useMediaQuery';
 import { DEVICES } from '../data/site';
 import track from '../assets/music/music-sample.mp3';
 import './Compare.css';
@@ -19,6 +19,12 @@ export default function Compare() {
   const { playing, progress, play, stop } = useCompareAudio(track);
   const { tilt, of: tiltOf, onMove, onLeave, reset } = useTilt();
   const isPhone = useMediaQuery(PHONE);
+  // 데스크톱(1024px 이상): 제목이 감지되는 순간 섹션 전체가 함께 시작하고, 순서는 각자의 대기 시간으로 만듦(2026-11-16).
+  // 태블릿·휴대폰은 지금처럼 문구마다 화면에 들어올 때 나타나고, 이미지는 안내 문구 뒤에 이어서 나타남
+  const compact = useMediaQuery(COMPACT);
+  const [started, setStarted] = useState(false);
+  const show = compact ? undefined : started;
+  const gridShown = compact ? textShown : started;
   const selectedDevice = DEVICES.find((d) => d.id === selected);
 
   const pick = (id) => {
@@ -59,9 +65,12 @@ export default function Compare() {
       <div className="compare__bg compare__bg--css" aria-hidden="true" />
 
       <div className="compare__head">
-        <SectionHeading id="s02-title" eyebrow="Experience" title="같은 트랙, 다른 저음" align="center" />
+        <SectionHeading id="s02-title" eyebrow="Experience" title="같은 트랙, 다른 저음"
+          align="center"
+          onShow={() => setStarted(true)}
+        />
 
-        <Reveal className="notice" role="note" delay={HEADING_STEP * 2}>
+        <Reveal className="notice" role="note" show={show} delay={HEADING_STEP * 2}>
           <Headphones className="notice__icon" size={28} strokeWidth={1.75} aria-hidden="true" />
           <div>
             <p className="notice__title">헤드폰 착용을 권장합니다</p>
@@ -71,13 +80,13 @@ export default function Compare() {
           </div>
         </Reveal>
 
-        <Reveal as="p" className="compare__guide" delay={GUIDE_DELAY} onShow={() => setTextShown(true)}>
+        <Reveal as="p" className="compare__guide" show={show} delay={GUIDE_DELAY} onShow={() => setTextShown(true)}>
           모델을 선택한 뒤 재생 버튼을 누르면 음원이 재생됩니다.
         </Reveal>
       </div>
 
       {/* 문구가 전부 올라온 뒤 0.3초 후 이미지 3개가 함께 나타남 */}
-      <Reveal className="compare__grid" show={textShown} delay={GUIDE_DELAY + REVEAL_DURATION + CARDS_AFTER_TEXT}>
+      <Reveal className="compare__grid" show={gridShown} delay={GUIDE_DELAY + REVEAL_DURATION + CARDS_AFTER_TEXT}>
         {DEVICES.map((device) => {
           const look = lookOf(device.id);
           const isSelected = look.state === 'selected';

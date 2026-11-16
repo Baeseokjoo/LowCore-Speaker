@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { Activity, AudioLines, Radio } from 'lucide-react';
 import SectionHeading, { HEADING_STEP } from '../components/SectionHeading';
 import Reveal from '../components/Reveal';
 import { DEVICES } from '../data/site';
+import useMediaQuery, { COMPACT } from '../hooks/useMediaQuery';
 import './Reason.css';
 
 // 저음 한계 막대 눈금: 20Hz~200Hz를 로그 눈금으로 펼침(낮은 음일수록 왼쪽)
@@ -19,12 +21,19 @@ const KEYWORDS = [
 
 // S03 이유 설명
 export default function Reason() {
+  // 데스크톱(1024px 이상): 제목이 감지되는 순간 섹션 전체가 함께 시작하고, 순서는 각자의 대기 시간으로 만듦(2026-11-16).
+  // 태블릿·휴대폰은 세로로 쌓여 화면보다 길어서 지금처럼 요소마다 화면에 들어올 때 나타남
+  const compact = useMediaQuery(COMPACT);
+  const [started, setStarted] = useState(false);
+  const show = compact ? undefined : started;
+
   return (
     <section id="s03" className="reason section-pad" aria-labelledby="s03-title">
       <div className="reason__grid">
         <div className="reason__head">
           <SectionHeading
             id="s03-title"
+            onShow={() => setStarted(true)}
             eyebrow="Why"
             title={
               <>
@@ -36,7 +45,7 @@ export default function Reason() {
           />
 
           {/* 저음 한계 비교 막대: 각 기기가 내는 가장 낮은 소리부터 오른쪽 끝까지 채움 */}
-          <Reveal as="figure" className="bass-range" delay={HEADING_STEP * 2}>
+          <Reveal as="figure" className="bass-range" show={show} delay={HEADING_STEP * 2}>
             <figcaption className="bass-range__caption">낮을수록 깊은 저음</figcaption>
             <ul className="bass-range__list">
               {DEVICES.map((d, i) => (
@@ -64,13 +73,13 @@ export default function Reason() {
           </Reveal>
         </div>
         <div className="reason__body">
-          <Reveal as="p" className="reason__lead" delay={HEADING_STEP * 2}>
+          <Reveal as="p" className="reason__lead" show={show} delay={HEADING_STEP * 2}>
             작은 디테일이 완성하는 사운드 LOWCORE
           </Reveal>
-          <Reveal as="p" className="reason__text" delay={HEADING_STEP * 3}>
+          <Reveal as="p" className="reason__text" show={show} delay={HEADING_STEP * 3}>
             좋은 소리는 단순히 크게 울리는 것이 아닙니다.
           </Reveal>
-          <Reveal as="p" className="reason__text" delay={HEADING_STEP * 4}>
+          <Reveal as="p" className="reason__text" show={show} delay={HEADING_STEP * 4}>
             깊게 파고드는 저음, 섬세하게 전달되는 진동, 공간을 채우는 풍부한 울림. 보이지 않는 설계의 차이가 듣는
             순간의 감동을 만들어냅니다
           </Reveal>
@@ -78,7 +87,7 @@ export default function Reason() {
           {/* 본문에 나온 세 가지 요소를 항목으로 나눔 */}
           <ul className="reason__keys">
             {KEYWORDS.map(({ icon: Icon, label }, i) => (
-              <Reveal as="li" key={label} className="reason__key" delay={HEADING_STEP * (5 + i)}>
+              <Reveal as="li" key={label} className="reason__key" show={show} delay={HEADING_STEP * (5 + i)}>
                 <Icon className="reason__key-icon" size={20} strokeWidth={1.75} aria-hidden="true" />
                 <span>{label}</span>
               </Reveal>
