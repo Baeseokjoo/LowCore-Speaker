@@ -11,11 +11,11 @@ export const NAV_ITEMS = [
   { id: 's04', label: 'Model' },
 ];
 
-// S02 비교 기기. size = 이미지 칸 높이 대비 비율(크기 순서 단계), cutoff = 저음 필터 기준 주파수(Hz)
+// S02 비교 기기. size = 이미지 칸 높이 대비 비율(크기 순서 단계), cutoff = 저음 필터 기준 주파수(Hz). LOWCORE 두 모델은 S04 사양표 주파수 응답 시작값과 같음(2026-11-16). S03 저음 한계 막대도 이 값을 씀
 export const DEVICES = [
   { id: 'pc', label: 'PC 스피커', ariaLabel: 'PC 스피커 선택', image: s02Pc, size: 0.6, cutoff: 150 },
-  { id: '5', label: 'LC-5-105', ariaLabel: 'LC-5-105 (5인치) 선택', image: s02Five, size: 0.7, cutoff: 60 },
-  { id: '8', label: 'LC-8-112', ariaLabel: 'LC-8-112 (8인치) 선택', image: s02Eight, size: 0.8, cutoff: 25 },
+  { id: '5', label: 'LC-5-105', ariaLabel: 'LC-5-105 (5인치) 선택', image: s02Five, size: 0.7, cutoff: 50 },
+  { id: '8', label: 'LC-8-112', ariaLabel: 'LC-8-112 (8인치) 선택', image: s02Eight, size: 0.8, cutoff: 35 },
 ];
 
 // S04 모델

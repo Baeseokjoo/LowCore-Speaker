@@ -39,9 +39,15 @@ export default function Compare() {
         state: 'idle',
         style: {
           transform: `perspective(900px) rotateX(${k ? k.rx.toFixed(2) : 0}deg) rotateY(${k ? k.ry.toFixed(2) : 0}deg) scale(${k ? 1.02 : 1})`,
-          transitionDuration: tilt ? '150ms, 400ms' : undefined,
+          // 호버 중 기울기는 0.08초로 커서를 바짝 따라감(transform, filter 순)
+          transitionDuration: tilt ? '80ms, 400ms' : undefined,
         },
-        tileStyle: { boxShadow: tiltGlow(k), borderColor: k ? 'var(--line-strong)' : undefined },
+        // 호버 중 빛은 바로 켜지고 지연 없이 따라감. 커서가 나가면 CSS 기본 0.2초로 서서히 꺼짐(box-shadow, border-color 순)
+        tileStyle: {
+          boxShadow: tiltGlow(k),
+          borderColor: k ? 'var(--line-strong)' : undefined,
+          transitionDuration: k ? '0ms, 200ms' : undefined,
+        },
       };
     }
     return { state: selected === id ? 'selected' : 'dimmed', style: undefined, tileStyle: undefined };
@@ -80,6 +86,7 @@ export default function Compare() {
               key={device.id}
               className={`compare-tile is-${look.state}`}
               style={look.style}
+              onMouseEnter={!selected ? onMove(device.id) : undefined}
               onMouseMove={!selected ? onMove(device.id) : undefined}
               onMouseLeave={!selected ? onLeave : undefined}
             >

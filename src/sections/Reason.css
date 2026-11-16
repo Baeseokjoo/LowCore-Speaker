@@ -40,6 +40,145 @@
   color: var(--fg-muted);
 }
 
+/* 저음 한계 비교 막대 (2026-11-16)
+   각 기기가 내는 가장 낮은 소리(--bar-start)부터 오른쪽 끝(200Hz)까지 채움. 20~200Hz 로그 눈금 */
+.bass-range {
+  margin: var(--space-8) 0 0;
+  max-width: 440px;
+}
+
+.bass-range__caption {
+  margin-bottom: var(--space-2);
+  font-size: 13px;
+  color: var(--fg-muted);
+}
+
+.bass-range__list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bass-range__row {
+  display: grid;
+  grid-template-columns: 84px 1fr 52px;
+  align-items: center;
+}
+
+.bass-range__label {
+  font-size: 13px;
+  color: var(--fg-muted);
+}
+
+.bass-range__row.is-lowcore .bass-range__label {
+  color: var(--fg);
+}
+
+.bass-range__track {
+  position: relative;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--track);
+}
+
+.bass-range__fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--bar-start);
+  right: 0;
+  border-radius: var(--radius-pill);
+  background: var(--fg-muted);
+  opacity: 0.5;
+  clip-path: inset(0 0 0 100%);
+}
+
+.bass-range__row.is-lowcore .bass-range__fill {
+  opacity: 1;
+  background: linear-gradient(90deg, var(--smoke-magenta), var(--orchid));
+}
+
+/* 막대 오른쪽 칸에 값 표시 */
+.bass-range__value {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  white-space: nowrap;
+  color: var(--fg-muted);
+  opacity: 0;
+}
+
+.bass-range__row.is-lowcore .bass-range__value {
+  color: var(--orchid);
+}
+
+/* 묶음이 나타나면 막대가 오른쪽 끝에서 왼쪽으로 차례로 늘어나고, 다 늘어난 뒤 값이 나타남 */
+.bass-range.is-shown .bass-range__fill {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 900ms var(--ease) var(--bar-delay);
+}
+
+.bass-range.is-shown .bass-range__value {
+  opacity: 1;
+  transition: opacity 300ms ease calc(var(--bar-delay) + 700ms);
+}
+
+.bass-range__axis {
+  position: relative;
+  height: 16px;
+  margin: 10px 52px 0 84px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--fg-muted);
+}
+
+.bass-range__axis span {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.bass-range__axis span:first-child {
+  transform: none;
+}
+
+.bass-range__axis span:last-child {
+  transform: translateX(-100%);
+}
+
+/* 본문에 나온 세 가지 요소 (2026-11-16) */
+.reason__keys {
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.reason__key {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 16px;
+  color: var(--fg);
+}
+
+.reason__key-icon {
+  flex-shrink: 0;
+  color: var(--orchid);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bass-range.is-shown .bass-range__fill,
+  .bass-range.is-shown .bass-range__value {
+    transition-delay: 0s;
+  }
+}
+
 /* 태블릿·휴대폰: 제목 위, 본문 아래로 쌓음 */
 @media (max-width: 1023px) {
   .reason__head,

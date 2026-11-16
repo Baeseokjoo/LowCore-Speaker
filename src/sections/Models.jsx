@@ -29,6 +29,7 @@ function ModelCard({ model, onOpen, tilt, onMove, onLeave, expanded, controls })
       className="model-card"
       data-model={model.id}
       onClick={onOpen}
+      onMouseEnter={onMove}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       aria-label={`${model.name} 상세 보기`}
@@ -38,6 +39,8 @@ function ModelCard({ model, onOpen, tilt, onMove, onLeave, expanded, controls })
       style={{
         transform: `perspective(1200px) rotateX(${k ? k.rx.toFixed(2) : 0}deg) rotateY(${k ? k.ry.toFixed(2) : 0}deg)`,
         boxShadow: tiltGlow(k),
+        // 호버 중: 기울기 0.08초, 빛은 바로 켜지고 지연 없이 따라감. 커서가 나가면 CSS 기본값(0.15초·0.2초)으로 돌아감
+        transitionDuration: k ? '80ms, 0ms' : undefined,
       }}
     >
       <span className="model-card__media">
