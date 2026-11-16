@@ -12,10 +12,10 @@ const isStillDevice = () =>
   prefersReducedMotion() || !window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
 // 메인카피 2줄 → 서브카피 2줄을 위에서부터 한 줄씩 펼침.
-// 서브카피 마지막 줄이 다 펼쳐지면(onComplete) 체험 시작 버튼이 서서히 나타남
+// 메인카피가 다 펼쳐지면(onComplete) 체험 시작 버튼이 서서히 나타남 — 데스크톱·모바일 같음(2026-11-16)
 const TEXT_START = 0.5; // 첫 줄 시작(초)
-const LINE_GAP = 0.55; // 줄과 줄 사이 시작 간격(초)
-const LINE_DURATION = 1.0; // 한 줄이 펼쳐지는 시간(초)
+const LINE_GAP = 0.45; // 줄과 줄 사이 시작 간격(초) — 2026-11-16 0.55 → 0.45
+const LINE_DURATION = 0.8; // 한 줄이 펼쳐지는 시간(초) — 2026-11-16 1.0 → 0.8
 const FOLD = {
   splitBy: 'line',
   hinge: 'top',
@@ -121,8 +121,8 @@ export default function Hero({ onStart }) {
             text={'들리지 않던 저음까지,\n작업의 기준이 되는 스피커 LOWCORE.'}
             {...fold}
             delay={textStart}
-            // 모바일 4번(태블릿 포함): 메인카피가 다 펼쳐지면 버튼 등장 → 데스크톱보다 빠름
-            onComplete={isMobile ? () => setCtaShown(true) : undefined}
+            // 메인카피가 다 펼쳐지면 버튼 등장(데스크톱은 2026-11-16부터 모바일과 같음)
+            onComplete={() => setCtaShown(true)}
           />
         </h1>
         <p className="hero__sub">
@@ -130,7 +130,6 @@ export default function Hero({ onStart }) {
             text={'같은 트랙을 PC 스피커와 LOWCORE로 번갈아 들으며,\n저음의 차이를 직접 확인해 보세요.'}
             {...fold}
             delay={textStart + lineGap * 2}
-            onComplete={() => setCtaShown(true)}
           />
         </p>
         <div className={`hero__cta-wrap${ctaShown ? ' is-shown' : ''}`}>

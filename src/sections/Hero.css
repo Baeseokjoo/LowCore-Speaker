@@ -218,6 +218,23 @@
   }
 }
 
+/* 데스크톱(1024px 이상): 체험 시작 버튼이 1초 동안 나타남 (2026-11-16, 0.7초 → 1초). 모바일은 0.7초 그대로 */
+@media (min-width: 1024px) {
+  .hero__cta-wrap {
+    transition:
+      opacity 1000ms ease,
+      transform 1000ms var(--ease),
+      visibility 0s linear 1000ms;
+  }
+
+  .hero__cta-wrap.is-shown {
+    transition:
+      opacity 1000ms ease,
+      transform 1000ms var(--ease),
+      visibility 0s;
+  }
+}
+
 /* 데스크톱 한 화면 맞춤: 세로 700px 이상 데스크톱에서 히어로를 화면 높이에 딱 맞춤 (2026-11-16) */
 @media (min-width: 1024px) and (min-height: 700px) {
   .hero {
