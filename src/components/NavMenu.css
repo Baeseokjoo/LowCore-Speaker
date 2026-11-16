@@ -34,3 +34,16 @@
   outline: 2px solid var(--orchid);
   outline-offset: 2px;
 }
+
+/* 터치 기기: 호버 알약은 끄고, 현재 위치 표시는 그대로 */
+@media (hover: none) {
+  .nav-menu__item:hover {
+    background: transparent;
+    color: var(--fg-muted);
+  }
+
+  .nav-menu__item.is-current:hover {
+    background: var(--orchid-tint);
+    color: var(--orchid);
+  }
+}

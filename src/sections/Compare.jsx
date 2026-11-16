@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Headphones } from 'lucide-react';
-import MagicRings from '../components/MagicRings/MagicRings';
 import SectionHeading, { HEADING_STEP } from '../components/SectionHeading';
 import Reveal, { REVEAL_DURATION, CARDS_AFTER_TEXT } from '../components/Reveal';
 import PlayControl from '../components/PlayControl';
@@ -50,26 +49,8 @@ export default function Compare() {
 
   return (
     <section id="s02" className="compare section-pad" aria-labelledby="s02-title">
-      <div className="compare__bg" aria-hidden="true">
-        <MagicRings
-          color="#6E2A6B"
-          colorTwo="#17466E"
-          motion="ripple"
-          ringCount={6}
-          baseRadius={0.22}
-          radiusStep={0.09}
-          expansion={0.12}
-          speed={0}
-          intro={false}
-          glow={1.2}
-          lineThickness={1.5}
-          opacity={0.23}
-          hoverScale={1}
-          hoverIntensity={0}
-          parallax={0}
-          clickBurst={false}
-        />
-      </div>
+      {/* 11번: 움직이지 않는 장면이라 WebGL(Magic Rings) 대신 CSS 고리로 대체. 데스크톱·모바일 같은 배경 */}
+      <div className="compare__bg compare__bg--css" aria-hidden="true" />
 
       <div className="compare__head">
         <SectionHeading id="s02-title" eyebrow="Experience" title="같은 트랙, 다른 저음" align="center" />

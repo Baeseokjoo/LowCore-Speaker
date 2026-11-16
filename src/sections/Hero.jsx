@@ -4,6 +4,7 @@ import MagicRings from '../components/MagicRings/MagicRings';
 import ElectricLogo from '../components/ElectricLogo/ElectricLogo';
 import FoldText from '../components/FoldText/FoldText';
 import { prefersReducedMotion } from '../hooks/useSectionNav';
+import useMediaQuery, { COMPACT } from '../hooks/useMediaQuery';
 import logo from '../assets/Logo/LowCore_logo_white.png';
 import './Hero.css';
 
@@ -26,6 +27,15 @@ const FOLD = {
   style: { lineHeight: 'inherit', letterSpacing: 'inherit' },
 };
 
+// 모바일 3번(태블릿 포함, 1023px 이하): 문구를 더 빠르게 펼침
+const MOBILE_TEXT_START = 0.3;
+const MOBILE_LINE_GAP = 0.3;
+const MOBILE_LINE_DURATION = 0.8;
+const FOLD_MOBILE = { ...FOLD, duration: MOBILE_LINE_DURATION, stagger: MOBILE_LINE_GAP };
+
+// 마우스 같은 정밀 포인터가 없는 기기(휴대폰·태블릿 터치)
+const isTouchDevice = () => !window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
 const hasWebGL2 = () => {
   try {
     return !!document.createElement('canvas').getContext('webgl2');
@@ -40,6 +50,11 @@ export default function Hero({ onStart }) {
   const rippleTimer = useRef(0);
   const [still] = useState(isStillDevice);
   const [electric] = useState(hasWebGL2);
+  const [touch] = useState(isTouchDevice);
+  const isMobile = useMediaQuery(COMPACT); // 모바일(태블릿 포함)
+  const fold = isMobile ? FOLD_MOBILE : FOLD;
+  const textStart = isMobile ? MOBILE_TEXT_START : TEXT_START;
+  const lineGap = isMobile ? MOBILE_LINE_GAP : LINE_GAP;
   const [ctaShown, setCtaShown] = useState(false);
 
   const handleStart = (e) => {
@@ -93,7 +108,7 @@ export default function Hero({ onStart }) {
               arcs={1}
               flicker={0.6}
               speed={1.8}
-              interactive
+              interactive={!touch} // 모바일 2번: 터치 기기(커서 없음)에서만 커서 반응 끔. 전기 선 움직임은 유지
               cursorIntensity={0.75}
               cursorRadius={100}
             />
@@ -104,15 +119,17 @@ export default function Hero({ onStart }) {
         <h1 className="hero__title">
           <FoldText
             text={'들리지 않던 저음까지,\n작업의 기준이 되는 스피커 LOWCORE.'}
-            {...FOLD}
-            delay={TEXT_START}
+            {...fold}
+            delay={textStart}
+            // 모바일 4번(태블릿 포함): 메인카피가 다 펼쳐지면 버튼 등장 → 데스크톱보다 빠름
+            onComplete={isMobile ? () => setCtaShown(true) : undefined}
           />
         </h1>
         <p className="hero__sub">
           <FoldText
             text={'같은 트랙을 PC 스피커와 LOWCORE로 번갈아 들으며,\n저음의 차이를 직접 확인해 보세요.'}
-            {...FOLD}
-            delay={TEXT_START + LINE_GAP * 2}
+            {...fold}
+            delay={textStart + lineGap * 2}
             onComplete={() => setCtaShown(true)}
           />
         </p>

@@ -59,3 +59,10 @@
   background: var(--orchid);
   border-radius: 2px;
 }
+
+/* 터치 기기: 호버 색 변화 끔 */
+@media (hover: none) {
+  .play-control__btn:hover {
+    background: var(--orchid);
+  }
+}

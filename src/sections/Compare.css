@@ -185,3 +185,28 @@
     min-height: 44px;
   }
 }
+
+/* 11번: S02 배경 고리를 CSS로 대체(데스크톱·모바일 공통, 2026-11-16).
+   데스크톱 Magic Rings 정지 장면과 같은 두 색(smoke-magenta → smoke-blue), 약 1/3 강도,
+   섹션 가운데를 중심으로 안쪽 고리부터 바깥 고리로 갈수록 파랗고 옅어짐 */
+.compare__bg--css {
+  background:
+    radial-gradient(
+      circle closest-side at 50% 50%,
+      transparent 42%,
+      rgba(110, 42, 107, 0.6) 44%,
+      transparent 46.5%,
+      transparent 60%,
+      rgba(88, 52, 104, 0.5) 62%,
+      transparent 64.5%,
+      transparent 78%,
+      rgba(58, 60, 108, 0.42) 80%,
+      transparent 82.5%,
+      transparent 96%,
+      rgba(23, 70, 110, 0.35) 98%,
+      transparent 100%
+    ),
+    radial-gradient(circle closest-side at 50% 50%, rgba(77, 43, 83, 0.18) 40%, rgba(7, 6, 11, 0) 100%);
+  filter: blur(1.5px);
+  opacity: 0.55;
+}

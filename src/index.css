@@ -148,3 +148,15 @@ a {
 .page {
   overflow-x: clip;
 }
+
+/* 터치 기기: 마우스 전용 호버 효과는 끔(탭한 뒤 호버 모양이 남지 않게). 누름(:active)은 그대로 */
+@media (hover: none) {
+  .btn--primary:hover {
+    background: var(--orchid);
+  }
+
+  .btn--ghost:hover {
+    border-color: var(--outline);
+    background: transparent;
+  }
+}
