@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import SectionHeading, { HEADING_STEP } from '../components/SectionHeading';
 import { prefersReducedMotion } from '../hooks/useSectionNav';
 import { capture, finishAll, morph } from './modelMorph';
+import useMediaQuery, { COMPACT } from '../hooks/useMediaQuery';
 import Reveal, { REVEAL_DURATION, CARDS_AFTER_TEXT } from '../components/Reveal';
 import useTilt, { tiltGlow } from '../hooks/useTilt';
 import { MODELS } from '../data/site';
@@ -20,7 +21,7 @@ function ModelImage({ model, size }) {
 }
 
 // S04 기본 상태 카드 (B03 / B04)
-function ModelCard({ model, onOpen, tilt, onMove, onLeave }) {
+function ModelCard({ model, onOpen, tilt, onMove, onLeave, expanded, controls }) {
   const k = tilt;
   return (
     <button
@@ -32,6 +33,8 @@ function ModelCard({ model, onOpen, tilt, onMove, onLeave }) {
       onMouseLeave={onLeave}
       aria-label={`${model.name} 상세 보기`}
       aria-describedby={`summary-${model.id}`}
+      aria-expanded={expanded}
+      aria-controls={controls}
       style={{
         transform: `perspective(1200px) rotateX(${k ? k.rx.toFixed(2) : 0}deg) rotateY(${k ? k.ry.toFixed(2) : 0}deg)`,
         boxShadow: tiltGlow(k),
@@ -122,6 +125,7 @@ export default function Models({ onBuy, onTry }) {
   const { of: tiltOf, onMove, onLeave, reset } = useTilt();
   const sectionRef = useRef(null);
   const pending = useRef(null); // 바뀌기 직전 모습(선택될 모델 · 밀려날 모델)
+  const compact = useMediaQuery(COMPACT);
 
   const find = (selector) => sectionRef.current?.querySelector(selector);
 
@@ -178,7 +182,31 @@ export default function Models({ onBuy, onTry }) {
 
       {/* 문구가 전부 올라온 뒤 0.3초 후 카드가 나타남. 펼침·접기는 이 묶음 안에서 바뀌어 다시 기다리지 않음 */}
       <Reveal show={textShown} delay={HEADING_STEP + REVEAL_DURATION + CARDS_AFTER_TEXT}>
-      {open === null && (
+      {/* 태블릿·휴대폰: 카드 2장을 세로로 두고, 누른 카드 바로 아래로 상세 정보가 펼쳐지는 아코디언 */}
+      {compact && (
+        <div className="models__accordion section-pad">
+          {['5', '8'].map((id) => {
+            const isOpen = open === id;
+            return (
+              <div key={id} className={`acc-item${isOpen ? ' is-open' : ''}`}>
+                <ModelCard
+                  model={MODELS[id]}
+                  onOpen={() => setOpen(isOpen ? null : id)}
+                  expanded={isOpen}
+                  controls={`acc-panel-${id}`}
+                />
+                <div className="acc-panel" id={`acc-panel-${id}`} role="region" aria-label={`${MODELS[id].name} 상세 정보`}>
+                  <div className="acc-panel__inner" inert={!isOpen}>
+                    <DetailBody model={MODELS[id]} onBuy={onBuy} onTry={onTry} />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {!compact && open === null && (
         <div className="models__cards section-pad">
           {['5', '8'].map((id) => (
             <ModelCard
@@ -193,7 +221,7 @@ export default function Models({ onBuy, onTry }) {
         </div>
       )}
 
-      {open === '5' && (
+      {!compact && open === '5' && (
         <div className="models__open" key="open-5">
           <div className="models__row models__row--five">
             <div className="detail detail--open-right">
@@ -205,7 +233,7 @@ export default function Models({ onBuy, onTry }) {
         </div>
       )}
 
-      {open === '8' && (
+      {!compact && open === '8' && (
         <div className="models__open" key="open-8">
           <div className="models__row models__row--eight">
             <PushedCard model={MODELS[5]} direction="left" onSelect={() => select('5')} />

@@ -34,3 +34,19 @@
   outline: 2px solid var(--orchid);
   outline-offset: 4px;
 }
+
+/* 휴대폰: 메뉴 세 개를 한 줄에 그대로 두고 크기만 줄임 */
+@media (max-width: 767px) {
+  .site-header .logo img {
+    height: 22px !important;
+  }
+
+  .site-header .nav-menu {
+    gap: 2px;
+    font-size: 13px;
+  }
+
+  .site-header .nav-menu__item {
+    padding: 6px 10px;
+  }
+}

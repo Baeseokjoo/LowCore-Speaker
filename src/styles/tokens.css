@@ -66,3 +66,20 @@
   /* motion */
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
+
+/* 반응형 기준: 태블릿 1023px 이하, 휴대폰 767px 이하 (src/hooks/useMediaQuery.js와 같은 값) */
+@media (max-width: 1023px) {
+  :root {
+    --space-section: 120px;
+    --space-8: 48px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --space-section: 88px;
+    --space-8: 40px;
+    --space-page: 20px;
+    --header-height: 64px;
+  }
+}

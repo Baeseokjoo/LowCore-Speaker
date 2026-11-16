@@ -130,3 +130,58 @@
   pointer-events: none;
   user-select: none;
 }
+
+/* 태블릿 */
+@media (max-width: 1023px) {
+  .compare {
+    padding-top: 112px;
+  }
+
+  .compare__grid {
+    gap: 20px;
+  }
+}
+
+/* 휴대폰: 이미지 3개는 한 줄 유지, 재생 컨트롤은 이미지 묶음 아래(.compare__controls) */
+@media (max-width: 767px) {
+  .compare {
+    padding-top: 88px;
+  }
+
+  .notice {
+    margin-top: 28px;
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .notice__icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .compare__guide {
+    font-size: 15px;
+  }
+
+  .compare__grid {
+    gap: 10px;
+  }
+
+  .compare-tile__btn {
+    border-radius: 14px;
+  }
+
+  .compare-tile__label {
+    top: 10px;
+    left: 10px;
+    right: 8px;
+    font-size: 11px;
+    letter-spacing: 0;
+  }
+
+  .compare__controls {
+    position: relative;
+    margin-top: 24px;
+    min-height: 44px;
+  }
+}

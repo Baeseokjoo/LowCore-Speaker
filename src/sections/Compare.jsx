@@ -6,6 +6,7 @@ import Reveal, { REVEAL_DURATION, CARDS_AFTER_TEXT } from '../components/Reveal'
 import PlayControl from '../components/PlayControl';
 import useCompareAudio from '../hooks/useCompareAudio';
 import useTilt, { tiltGlow } from '../hooks/useTilt';
+import useMediaQuery, { PHONE } from '../hooks/useMediaQuery';
 import { DEVICES } from '../data/site';
 import track from '../assets/music/music-sample.mp3';
 import './Compare.css';
@@ -18,6 +19,8 @@ export default function Compare() {
   const [textShown, setTextShown] = useState(false);
   const { playing, progress, play, stop } = useCompareAudio(track);
   const { tilt, of: tiltOf, onMove, onLeave, reset } = useTilt();
+  const isPhone = useMediaQuery(PHONE);
+  const selectedDevice = DEVICES.find((d) => d.id === selected);
 
   const pick = (id) => {
     stop();
@@ -116,11 +119,28 @@ export default function Compare() {
                   draggable={false}
                 />
               </button>
-              {isSelected && <PlayControl playing={playing} progress={progress} onToggle={() => toggle(device)} />}
+              {isSelected && !isPhone && (
+                <PlayControl playing={playing} progress={progress} onToggle={() => toggle(device)} />
+              )}
             </div>
           );
         })}
       </Reveal>
+
+      {/* 휴대폰: 이미지가 작아 재생 컨트롤을 이미지 묶음 아래에 넓게 둠. 자리는 미리 잡아 두어 선택해도 화면이 밀리지 않음 */}
+      {isPhone && (
+        <div className="compare__controls">
+          {selectedDevice && (
+            <PlayControl
+              inline
+              playing={playing}
+              progress={progress}
+              onToggle={() => toggle(selectedDevice)}
+              label={selectedDevice.label}
+            />
+          )}
+        </div>
+      )}
     </section>
   );
 }

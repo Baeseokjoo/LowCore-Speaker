@@ -9,6 +9,17 @@
   animation: lc-fadein 300ms ease both;
 }
 
+.play-control--inline {
+  position: static;
+}
+
+.play-control__label {
+  flex: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-muted);
+}
+
 .play-control__btn {
   flex: none;
   width: 44px;

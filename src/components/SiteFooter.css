@@ -14,3 +14,12 @@
   font-size: 13px;
   color: var(--fg-muted);
 }
+
+/* 휴대폰: 워드마크 · 메뉴 · © 를 가운데로 세로 정렬 */
+@media (max-width: 767px) {
+  .site-footer {
+    flex-direction: column;
+    gap: 20px;
+    padding: 32px var(--space-page) 40px;
+  }
+}

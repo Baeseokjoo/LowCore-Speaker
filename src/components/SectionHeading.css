@@ -26,3 +26,15 @@
   letter-spacing: -0.02em;
   color: var(--fg);
 }
+
+@media (max-width: 1023px) {
+  .section-heading__title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section-heading__title {
+    font-size: 28px;
+  }
+}
