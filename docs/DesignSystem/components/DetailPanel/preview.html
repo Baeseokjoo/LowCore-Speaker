@@ -13,7 +13,7 @@ function Demo(){ var s=React.useState(false),o=s[0],set=s[1];
   return h('div',null,
     h(L.DetailPanel,{kind:'5',name:'5인치 모델',imageSide:'left',onBuy:function(){set(true);},onTry:function(e){e.preventDefault();}},
       h('span',{className:'lc-heading__eyebrow',style:{fontSize:12,letterSpacing:0}},'[미정] 상세 정보 항목')),
-    h(L.Dialog,{open:o,title:'상품 준비 중입니다.',onClose:function(){set(false);}})); }
+    h(L.Dialog,{open:o,title:'준비 중입니다',onClose:function(){set(false);}},'실습용 사이트로 구매가 불가합니다.')); }
 ReactDOM.createRoot(document.getElementById('root')).render(h(Demo));
 </script>
 </body>

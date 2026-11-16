@@ -35,7 +35,9 @@ function App() {
       <SiteFooter onNavigate={goTo} />
 
       {/* B05 구매 안내창 문구 (2026-11-16 확정) */}
-      <Dialog open={dialogOpen} title="상품 준비 중입니다." onClose={closeDialog} />
+      <Dialog open={dialogOpen} title="준비 중입니다" onClose={closeDialog}>
+        실습용 사이트로 구매가 불가합니다.
+      </Dialog>
     </div>
   );
 }
