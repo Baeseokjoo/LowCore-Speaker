@@ -29,7 +29,7 @@ export default function Dialog({ open, title, children, onClose }) {
         <h3 id="dialog-title" className="dialog__title">
           {title}
         </h3>
-        <div className="dialog__body">{children}</div>
+        {children && <div className="dialog__body">{children}</div>}
         <button ref={closeRef} type="button" className="btn btn--ghost btn--sm dialog__close" onClick={onClose}>
           닫기
         </button>

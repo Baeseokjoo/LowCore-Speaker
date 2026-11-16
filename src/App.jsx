@@ -34,9 +34,8 @@ function App() {
       </main>
       <SiteFooter onNavigate={goTo} />
 
-      <Dialog open={dialogOpen} title="준비 중입니다" onClose={closeDialog}>
-        구매 기능은 아직 준비 중입니다. <span className="note">[안내창 문구 미정]</span>
-      </Dialog>
+      {/* B05 구매 안내창 문구 (2026-11-16 확정) */}
+      <Dialog open={dialogOpen} title="상품 준비 중입니다." onClose={closeDialog} />
     </div>
   );
 }
