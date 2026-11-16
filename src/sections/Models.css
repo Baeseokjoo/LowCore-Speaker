@@ -378,3 +378,11 @@
     padding: 4px 0;
   }
 }
+
+/* 좁은 데스크톱(1024~1067px): 18px에서는 LC-8-112 요약 두 번째 줄이 두 줄로 꺾여 카드가 길어지므로
+   이 구간에서만 요약 글자를 16px로 줄여 세 줄을 유지 (2026-11-16) */
+@media (min-width: 1024px) and (max-width: 1067px) {
+  .model-card__summary {
+    font-size: 16px;
+  }
+}
