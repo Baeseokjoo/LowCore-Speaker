@@ -69,7 +69,7 @@
 .lc-tile.is-idle .lc-tile__btn:hover { border-color: var(--line-strong); }
 .lc-tile.is-selected .lc-tile__btn { border-color: var(--orchid); }
 .lc-tile__btn:focus-visible { outline: 2px solid var(--orchid); outline-offset: 4px; }
-.lc-tile__label { position: absolute; top: 20px; left: 20px; font-size: 13px; font-weight: 500; color: var(--fg-muted); }
+.lc-tile__label { position: absolute; top: 20px; left: 20px; font-size: 16px; font-weight: 600; color: var(--fg); }
 .lc-tile__play { position: absolute; left: 16px; right: 16px; bottom: 16px; }
 
 /* ModelCard */

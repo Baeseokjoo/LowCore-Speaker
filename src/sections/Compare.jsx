@@ -99,6 +99,12 @@ export default function Compare() {
               onMouseMove={!selected ? onMove(device.id) : undefined}
               onMouseLeave={!selected ? onLeave : undefined}
             >
+              {/* 1023px 이하: 모델명을 카드 테두리 바깥 위 가운데에 둠 */}
+              {compact && (
+                <span className="compare-tile__name" aria-hidden="true">
+                  {device.label}
+                </span>
+              )}
               <button
                 type="button"
                 className="compare-tile__btn"
@@ -107,7 +113,7 @@ export default function Compare() {
                 aria-pressed={isSelected}
                 aria-label={device.ariaLabel}
               >
-                <span className="compare-tile__label">{device.label}</span>
+                {!compact && <span className="compare-tile__label">{device.label}</span>}
                 <img
                   className="compare-tile__img"
                   src={device.image}
