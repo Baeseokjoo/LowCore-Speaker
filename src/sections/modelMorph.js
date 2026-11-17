@@ -2,6 +2,7 @@
 // 누르기 직전의 요소(기본 카드, 블러 카드, 펼친 이미지 프레임)를 복제해 화면에 띄우고,
 // 바뀐 화면의 목적지 요소 자리·크기·테두리·블러까지 자연스럽게 바꾼 뒤 사라짐.
 // 그동안 진짜 목적지 요소는 숨겨 두었다가 끝나면 보여 줌.
+// 접을 때(이미지 프레임·블러 카드 → 기본 카드)는 펼칠 때를 거꾸로 함(2026-11-17).
 
 const running = new Set();
 
@@ -50,8 +51,17 @@ export function morph(from, to, { duration, easing }) {
   const cs = getComputedStyle(to);
   const toImg = to.querySelector('.model-img');
   const toImgH = toImg ? toImg.getBoundingClientRect().height : null;
+  const toMedia = to.querySelector('.model-card__media');
+  // 접기: 기본 카드로 돌아갈 때는 목적지 카드를 복제해 띄움(아래 문구가 나타나야 하므로)
+  const collapsing = !!toMedia && !from.mediaHeight;
+  const toMediaH = toMedia ? toMedia.getBoundingClientRect().height : null;
 
-  const g = from.ghost;
+  let g = from.ghost;
+  if (collapsing) {
+    g = to.cloneNode(true);
+    g.removeAttribute('id');
+    g.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id'));
+  }
   Object.assign(g.style, {
     position: 'fixed',
     left: px(from.rect.left),
@@ -102,13 +112,25 @@ export function morph(from, to, { duration, easing }) {
 
   // 기본 카드에서 출발: 이미지 칸이 카드 높이만큼 커지고, 아래 문구는 점차 사라짐
   const media = g.querySelector('.model-card__media');
-  if (media && from.mediaHeight) {
+  if (media && collapsing) {
+    // 접기: 이미지 칸이 프레임 높이에서 카드 이미지 높이로 줄어들고, 아래 문구는 마지막에 나타남
+    media.style.flexShrink = '0';
+    anims.push(media.animate([{ height: px(from.rect.height) }, { height: px(toMediaH) }], timing));
+  } else if (media && from.mediaHeight) {
     // 아래 문구 칸에 눌려 이미지 칸이 줄어들지 않게 함(줄어들면 끝에서 이미지가 튐)
     media.style.flexShrink = '0';
     anims.push(media.animate([{ height: px(from.mediaHeight) }, { height: px(rect.height) }], timing));
   }
   const text = g.querySelector('.model-card__text');
-  if (text) {
+  if (text && collapsing) {
+    anims.push(
+      text.animate([{ opacity: 0 }, { opacity: 0, offset: 0.65 }, { opacity: 1 }], {
+        duration,
+        easing: 'ease-in',
+        fill: 'forwards',
+      }),
+    );
+  } else if (text) {
     anims.push(
       text.animate([{ opacity: 1 }, { opacity: 0, offset: 0.35 }, { opacity: 0 }], {
         duration,

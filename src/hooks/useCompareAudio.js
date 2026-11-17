@@ -7,6 +7,7 @@ const FADE_OUT = 0.2;
  * 한 음원을 Web Audio로 재생하면서, 고른 기기에 맞춰 저음을 깎는 고역 통과 필터를 건다.
  * - 자동 재생 없음: play()는 사용자 클릭에서만 호출
  * - 0.3초 페이드인 / 0.2초 페이드아웃
+ * - seek(0~100): 플레이바를 누르거나 끌어 재생 위치를 옮김(재생 중·정지 중 모두, 2026-11-17)
  */
 export default function useCompareAudio(src) {
   const audioRef = useRef(null);
@@ -95,5 +96,13 @@ export default function useCompareAudio(src) {
     fadeTimer.current = setTimeout(() => audio.pause(), FADE_OUT * 1000);
   }, []);
 
-  return { playing, progress, play, stop };
+  const seek = useCallback((percent) => {
+    const audio = audioRef.current;
+    if (!audio || !audio.duration) return;
+    const p = Math.min(100, Math.max(0, percent));
+    audio.currentTime = (p / 100) * audio.duration;
+    setProgress(p);
+  }, []);
+
+  return { playing, progress, play, stop, seek };
 }

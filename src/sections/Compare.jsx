@@ -16,7 +16,7 @@ const GUIDE_DELAY = HEADING_STEP * 3; // 마지막 문구(안내 문구)의 시�
 export default function Compare() {
   const [selected, setSelected] = useState(null);
   const [textShown, setTextShown] = useState(false);
-  const { playing, progress, play, stop } = useCompareAudio(track);
+  const { playing, progress, play, stop, seek } = useCompareAudio(track);
   const { tilt, of: tiltOf, onMove, onLeave, reset } = useTilt();
   const isPhone = useMediaQuery(PHONE);
   // 데스크톱(1024px 이상): 제목이 감지되는 순간 섹션 전체가 함께 시작하고, 순서는 각자의 대기 시간으로 만듦(2026-11-16).
@@ -65,7 +65,7 @@ export default function Compare() {
       <div className="compare__bg compare__bg--css" aria-hidden="true" />
 
       <div className="compare__head">
-        <SectionHeading id="s02-title" eyebrow="Experience" title="같은 트랙, 다른 저음"
+        <SectionHeading id="s02-title" eyebrow="Experience" title="같은 트랙, 다른 Sound"
           align="center"
           onShow={() => setStarted(true)}
         />
@@ -75,7 +75,7 @@ export default function Compare() {
           <div>
             <p className="notice__title">헤드폰 착용을 권장합니다</p>
             <p className="notice__body">
-              저음 차이를 정확히 비교하려면 헤드폰으로 들어 주세요. 재생 전에 볼륨을 낮게 맞춰 주세요.
+              음향 차이를 정확히 비교하려면 헤드폰으로 들어 주세요. 재생 전에 볼륨을 낮게 맞춰 주세요.
             </p>
           </div>
         </Reveal>
@@ -123,7 +123,12 @@ export default function Compare() {
                 />
               </button>
               {isSelected && !isPhone && (
-                <PlayControl playing={playing} progress={progress} onToggle={() => toggle(device)} />
+                <PlayControl
+                  playing={playing}
+                  progress={progress}
+                  onToggle={() => toggle(device)}
+                  onSeek={seek}
+                />
               )}
             </div>
           );
@@ -139,6 +144,7 @@ export default function Compare() {
               playing={playing}
               progress={progress}
               onToggle={() => toggle(selectedDevice)}
+              onSeek={seek}
               label={selectedDevice.label}
             />
           )}

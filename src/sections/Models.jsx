@@ -136,7 +136,16 @@ export default function Models({ onBuy, onTry }) {
     reset();
     finishAll();
     pending.current = null;
-    if (id !== null && !prefersReducedMotion()) {
+    if (id === null && open !== null && !prefersReducedMotion()) {
+      // 접기: 이미지 프레임 → 원래 카드, 블러 카드 → 원래 카드 (펼칠 때를 거꾸로, 2026-11-17)
+      const other = open === '5' ? '8' : '5';
+      pending.current = {
+        id: null,
+        from: open,
+        selected: capture(find(`.detail__media[data-model="${open}"]`)),
+        other: capture(find(`.pushed-card[data-model="${other}"]`)),
+      };
+    } else if (id !== null && !prefersReducedMotion()) {
       const other = id === '5' ? '8' : '5';
       pending.current =
         open === null
@@ -162,6 +171,16 @@ export default function Models({ onBuy, onTry }) {
     const p = pending.current;
     pending.current = null;
     if (!p || p.id !== open) return;
+    if (p.id === null) {
+      const opts = {
+        duration: parseFloat(getComputedStyle(sectionRef.current).getPropertyValue('--s04-open')) || 900,
+        easing: getComputedStyle(sectionRef.current).getPropertyValue('--s04-ease').trim() || 'ease',
+      };
+      const other = p.from === '5' ? '8' : '5';
+      morph(p.selected, find(`.model-card[data-model="${p.from}"]`), opts);
+      morph(p.other, find(`.model-card[data-model="${other}"]`), opts);
+      return;
+    }
     const styles = getComputedStyle(sectionRef.current);
     const opts = {
       duration: parseFloat(styles.getPropertyValue('--s04-open')) || 900,

@@ -44,6 +44,22 @@
   outline-offset: 4px;
 }
 
+/* 플레이바 누르기·끌기 영역: 높이 44px, 가운데 4px 선 (2026-11-17) */
+.play-control__seek {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.play-control__seek:focus-visible {
+  outline: 2px solid var(--orchid);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 .play-control__track {
   position: relative;
   flex: 1;
