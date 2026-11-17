@@ -6,20 +6,20 @@
 
 - **Live Demo**: https://baeseokjoo.github.io/LowCore-Speaker/
 - **GitHub**: https://github.com/Baeseokjoo/LowCore-Speaker
-- **Figma 디자인**: https://www.figma.com/design/PCKvGX1rVF93q6g0Yz2cdP/LowCore?node-id=0-1&t=BpYgclROmPNskwFK-1
+- **Figma 와이어프레임**: https://www.figma.com/design/PCKvGX1rVF93q6g0Yz2cdP/LowCore?node-id=15-2&t=eS7fqBWv6DfLBFZn-1
 
 ## 2. 프로젝트 정보
 
 - **제작 기간**: 2026.11.12 ~ 2026.11.16 (05일)
 - **담당 역할**: 개인 프로젝트 (기여도 100%)
-- **담당 범위**: Figma 개선 디자인 → 바이브코딩 구현 → GitHub Pages 배포
+- **담당 범위**: 기획 → 바이브코딩 구현 → GitHub Pages 배포
 
 ## 3. 사용 기술
 
 - **React, Vite**: Figma에서 디자인을 구성하고 그에 맞게 화면을 컴포넌트로 구성하며 수정하기 쉽게 설정하기 위해 사용
 - **GitHub Pages**: 무료 배포
-- **Figma**: 개선 디자인
-- **Claude**: 바이브코딩 (화면 구현)
+- **Figma**: 와이어 프레임
+- **Claude**: 디자인 및 바이브코딩 (화면 구현)
 
 ## 4. 주요 기능
 
